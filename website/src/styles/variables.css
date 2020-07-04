@@ -1,0 +1,12 @@
+:root {
+  /* Colors */
+  --color-blue: #2578ff;
+  --color-blue-dark-primary: #263b5d;
+  --color-blue-dark-secondary: #435b81;
+  --color-gray: #b1b8c5;
+  --color-gray-light: rgba(177, 184, 197, 0.15);
+
+  /* Font sizes */
+  --size-huge-title: 2em;
+  --size-title: 1.5625em;
+}

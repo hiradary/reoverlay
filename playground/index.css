@@ -1,0 +1,32 @@
+.playground {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playground .playground__container {
+  width: 100%;
+  max-width: 75em;
+  padding: 3em;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.playground .playground__animation {
+  background-color: rgba(177, 184, 197, 0.15);
+  border-radius: 1em;
+  padding: 1em 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.playground .playground__modalContentContainer {
+  background-color: white;
+  padding: 5em;
+}

@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "ProductSans";
+  font-weight: 400;
+  src: local("Product Sans"), local("ProductSans-Regular"),
+    url("../fonts/ProductSansRegular.ttf") format("truetype"),
+    url("../fonts/ProductSansRegular.woff") format("woff"),
+    url("../fonts/ProductSansRegular.woff2") format("woff2");
+  font-style: normal;
+}
+@font-face {
+  font-family: "ProductSans";
+  font-weight: 700;
+  src: local("Product Sans Bold"), local("ProductSans-Bold"),
+    url("../fonts/ProductSansBold.ttf") format("truetype"),
+    url("../fonts/ProductSansBold.woff") format("woff"),
+    url("../fonts/ProductSansBold.woff2") format("woff2");
+  font-style: normal;
+}

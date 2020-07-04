@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "ProductSans", sans-serif;
+  font-weight: normal;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+}
