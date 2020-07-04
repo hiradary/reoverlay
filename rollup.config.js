@@ -1,6 +1,6 @@
 import babel from 'rollup-plugin-babel'
 import resolve from '@rollup/plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs'
+import commonjs from '@rollup/plugin-commonjs'
 import copy from 'rollup-plugin-copy'
 import { terser } from 'rollup-plugin-terser'
 
@@ -13,10 +13,12 @@ const config = {
   },
   external: ['react', 'react-dom'],
   plugins: [
+    resolve({
+      browser: true,
+    }),
     babel({
       exclude: 'node_modules/**',
     }),
-    resolve(),
     commonjs(),
     copy({
       targets: [{ src: 'src/ModalWrapper.css', dest: 'lib' }],

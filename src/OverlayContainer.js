@@ -27,7 +27,7 @@ const OverlayContainer = ({ overlays }) => {
       {overlayArray.map(({ overlayKey, component, props }) => {
         const Component = component
         return (
-          <Fragment key={overlayKey}>
+          <Fragment key={`id-${overlayKey}`}>
             <Component {...props} />
           </Fragment>
         )
