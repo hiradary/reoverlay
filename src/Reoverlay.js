@@ -22,7 +22,6 @@ const Reoverlay = {
     if (overlayType === 'string') {
       // "overlay" is a string here
       const overlayKey = overlay
-
       const hasAlreadyDefinedOverlay = this.overlays.has(overlayKey)
 
       if (!hasAlreadyDefinedOverlay) {
@@ -61,7 +60,7 @@ const Reoverlay = {
   // If "overlay" is not specified, the last one will be hidden by default.
   hideOverlay(overlay = null) {
     if (overlay) {
-      validate(VALIDATE.HIDE_OVERLAY)
+      validate(VALIDATE.HIDE_OVERLAY, overlay)
 
       const overlayKey = overlay
       const hasAlreadyDefinedSnappshot = this.snappshots.has(overlayKey)

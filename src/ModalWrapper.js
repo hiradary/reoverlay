@@ -3,7 +3,8 @@
 
 import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
+
+import Reoverlay from './Reoverlay'
 
 const ModalWrapper = ({
   children,
@@ -28,18 +29,10 @@ const ModalWrapper = ({
     <div
       ref={wrapperElement}
       role="dialog"
-      className={classNames(
-        'reOverlay__modalWrapper',
-        {
-          [`-ro-${animation}`]: animation,
-        },
-        wrapperClassName
-      )}
+      className={`reOverlay__modalWrapper -ro-${animation} ${wrapperClassName}`}
       onClick={handleClickOutside}
     >
-      <div className={classNames('reOverlay__modalContainer', contentContainerClassName)}>
-        {children}
-      </div>
+      <div className={`reOverlay__modalContainer ${contentContainerClassName}`}>{children}</div>
     </div>
   )
 }
@@ -66,8 +59,8 @@ ModalWrapper.defaultProps = {
   children: null,
   wrapperClassName: '',
   contentContainerClassName: '',
-  animation: '',
-  onClose: () => {},
+  animation: 'fade',
+  onClose: () => Reoverlay.hideOverlay(),
 }
 
 export default ModalWrapper

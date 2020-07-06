@@ -22,14 +22,9 @@ const ANIMATION_TYPES = [
 ]
 
 const MyModal = ({ animationType, title }) => {
-  const closeModal = () => {
-    Reoverlay.hideOverlay()
-  }
-
   return (
     <ModalWrapper
       animation={animationType}
-      onClose={closeModal}
       contentContainerClassName="playground__modalContentContainer"
     >
       <h1>{title}</h1>
