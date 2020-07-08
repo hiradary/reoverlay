@@ -1,7 +1,7 @@
 # Reoverlay
 
 ![Size](https://img.shields.io/bundlephobia/minzip/reoverlay)
-![Downloads](https://img.shields.io/npm/dm/reoverlay)
+![Downloads](https://img.shields.io/npm/dw/reoverlay)
 ![Version](https://img.shields.io/npm/v/reoverlay)
 ![Twitter](https://img.shields.io/twitter/follow/hiradary?style=social)
 ![NPM License](https://img.shields.io/npm/l/reoverlay)
