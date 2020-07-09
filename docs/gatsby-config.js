@@ -17,4 +17,5 @@ module.exports = {
     `gatsby-plugin-sharp`,
     "gatsby-plugin-svgr",
   ],
+  pathPrefix: "/reoverlay",
 }
