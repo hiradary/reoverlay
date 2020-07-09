@@ -3,25 +3,25 @@ import React, { useEffect, useState, Fragment } from 'react'
 import { eventManager } from './utils'
 import { EVENT } from './constants'
 
-const OverlayContainer = () => {
-  const [overlays, setOverlays] = useState([])
+const ModalContainer = () => {
+  const [modals, setModals] = useState([])
 
   useEffect(() => {
-    eventManager.on(EVENT.CHANGE_OVERLAY, (derivedOverlays) => {
-      setOverlays(derivedOverlays)
+    eventManager.on(EVENT.CHANGE_MODAL, (derivedModals) => {
+      setModals(derivedModals)
     })
 
     return () => {
       eventManager.off()
     }
-  }, [overlays])
+  }, [modals])
 
   return (
     <div className="reOverlay">
-      {overlays.map(({ overlayKey, component, props }) => {
+      {modals.map(({ modalKey, component, props }) => {
         const Component = component
         return (
-          <Fragment key={`id-${overlayKey}`}>
+          <Fragment key={`id-${modalKey}`}>
             <Component {...props} />
           </Fragment>
         )
@@ -30,4 +30,4 @@ const OverlayContainer = () => {
   )
 }
 
-export default OverlayContainer
+export default ModalContainer

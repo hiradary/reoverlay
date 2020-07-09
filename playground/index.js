@@ -4,7 +4,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { ModalWrapper, Reoverlay, OverlayContainer } from '../src'
+import { ModalWrapper, Reoverlay, ModalContainer } from '../src'
 
 import '../src/ModalWrapper.css'
 import './index.css'
@@ -41,7 +41,7 @@ Reoverlay.config([
 
 const App = () => {
   const showModal = (animationType) => {
-    Reoverlay.showOverlay('MyModal', {
+    Reoverlay.showModal('MyModal', {
       animationType,
       title: `This is ${animationType} animation.`,
     })
@@ -62,7 +62,7 @@ const App = () => {
           </div>
         ))}
       </div>
-      <OverlayContainer />
+      <ModalContainer />
     </main>
   )
 }

@@ -29,10 +29,10 @@ export const validate = (type, value) => {
       return true
     }
 
-    case VALIDATE.SHOW_OVERLAY: {
+    case VALIDATE.SHOW_MODAL: {
       const throwError = () => {
         throw new Error(
-          "Reoverlay: Method 'showOverlay' has one required argument. Please pass on a React Component, or a pre-configuered identifier string."
+          "Reoverlay: Method 'showModal' has one required argument. Please pass on a React Component, or a pre-configuered identifier string."
         )
       }
 
@@ -45,10 +45,10 @@ export const validate = (type, value) => {
       break
     }
 
-    case VALIDATE.HIDE_OVERLAY: {
+    case VALIDATE.HIDE_MODAL: {
       if (isString(value)) return true
       throw new Error(
-        `Reoverlay: Method 'hideOverlay' has one optional argument. Expected a 'string', got a ${typeof value}`
+        `Reoverlay: Method 'hideModal' has one optional argument. Expected a 'string', got a ${typeof value}`
       )
     }
     default:

@@ -1,12 +1,12 @@
 export const VALIDATE = {
   CONFIG: 'config',
-  SHOW_OVERLAY: 'show_overlay',
-  HIDE_OVERLAY: 'hide_overlay',
+  SHOW_MODAL: 'show_modal',
+  HIDE_MODAL: 'hide_modal',
 }
 
 export const EVENT = {
-  SHOW_OVERLAY: 'show_overlay',
-  HIDE_OVERLAY: 'hide_overlay',
-  CHANGE_OVERLAY: 'change_overlay',
-  HIDE_ALL_OVERLAYS: 'hide_all_overlays',
+  SHOW_MODAL: 'show_modal',
+  HIDE_MODAL: 'hide_modal',
+  CHANGE_MODAL: 'change_modal',
+  HIDE_ALL: 'hide_all',
 }

@@ -60,7 +60,7 @@ ModalWrapper.defaultProps = {
   wrapperClassName: '',
   contentContainerClassName: '',
   animation: 'fade',
-  onClose: () => Reoverlay.hideOverlay(),
+  onClose: () => Reoverlay.hideModal(),
 }
 
 export default ModalWrapper

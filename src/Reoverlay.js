@@ -4,7 +4,7 @@ import { VALIDATE, EVENT } from './constants'
 import { validate, eventManager, getLastElement } from './utils'
 
 const Reoverlay = {
-  overlays: new Map(),
+  modals: new Map(),
   snappshots: new Map(),
 
   config(configData = []) {
@@ -12,69 +12,69 @@ const Reoverlay = {
 
     // Set config data
     configData.forEach((item) => {
-      this.overlays.set(item.name, item.component)
+      this.modals.set(item.name, item.component)
     })
   },
 
-  showOverlay(overlay = null, props = {}) {
-    const overlayType = validate(VALIDATE.SHOW_OVERLAY, overlay)
+  showModal(modal = null, props = {}) {
+    const modalType = validate(VALIDATE.SHOW_MODAL, modal)
 
-    if (overlayType === 'string') {
-      // "overlay" is a string here
-      const overlayKey = overlay
-      const hasAlreadyDefinedOverlay = this.overlays.has(overlayKey)
+    if (modalType === 'string') {
+      // modal is a string here
+      const modalKey = modal
+      const hasAlreadyDefinedModal = this.modals.has(modalKey)
 
-      if (!hasAlreadyDefinedOverlay) {
+      if (!hasAlreadyDefinedModal) {
         throw new Error(
-          "Reoverlay: Overlay not found. You're probably trying to access a pre-configured overlay which does not exist."
+          "Reoverlay: Modal not found. You're probably trying to access a pre-configured modal which does not exist."
         )
       }
 
-      const overlayElement = this.overlays.get(overlayKey)
-      this.applyOverlay({
-        component: overlayElement,
+      const modalElement = this.modals.get(modalKey)
+      this.applyModal({
+        component: modalElement,
         props,
-        overlayKey,
-        type: EVENT.SHOW_OVERLAY,
+        modalKey,
+        type: EVENT.SHOW_MODAL,
       })
     } else {
       const data = {
-        component: overlay,
+        component: modal,
         props,
-        overlayKey: shortid.generate(),
-        type: EVENT.SHOW_OVERLAY,
+        modalKey: shortid.generate(),
+        type: EVENT.SHOW_MODAL,
       }
-      this.applyOverlay(data)
+      this.applyModal(data)
     }
   },
 
   getSnappshotsArray() {
     const snappshotsArray = []
     for (const [key, value] of this.snappshots.entries()) {
-      snappshotsArray.push({ overlayKey: key, ...value })
+      snappshotsArray.push({ modalKey: key, ...value })
     }
 
     return snappshotsArray
   },
 
-  // If "overlay" is not specified, the last one gets hidden by default.
-  hideOverlay(overlay = null) {
-    if (overlay) {
-      validate(VALIDATE.HIDE_OVERLAY, overlay)
+  // If modal has no value, the last one gets hidden by default.
+  hideModal(modal = null) {
+    if (modal) {
+      validate(VALIDATE.HIDE_MODAL, modal)
 
-      const overlayKey = overlay
-      const hasAlreadyDefinedSnappshot = this.snappshots.has(overlayKey)
+      const modalKey = modal
+      const hasAlreadyDefinedSnappshot = this.snappshots.has(modalKey)
 
       if (!hasAlreadyDefinedSnappshot) {
         throw new Error(
-          "Reoverlay: Snappshot not found. You're probably trying to hide an overlay which does not exist."
+          "Reoverlay: Snappshot not found. You're probably trying to hide an modal which does not exist."
         )
       } else {
-        const snappshot = this.snappshots.get(overlayKey)
-        this.applyOverlay({
+        const snappshot = this.snappshots.get(modalKey)
+        this.applyModal({
           ...snappshot,
-          overlayKey,
-          type: EVENT.HIDE_OVERLAY,
+          modalKey,
+          type: EVENT.HIDE_MODAL,
         })
       }
     } else {
@@ -82,32 +82,32 @@ const Reoverlay = {
       const lastSnappshot = getLastElement(snappshotsArray) || null
 
       if (lastSnappshot) {
-        this.applyOverlay({ ...lastSnappshot, type: EVENT.HIDE_OVERLAY })
+        this.applyModal({ ...lastSnappshot, type: EVENT.HIDE_MODAL })
       } else {
-        console.error("Reoverlay: There's no active overlay to be hidden")
+        console.error("Reoverlay: There's no active modal to be hidden")
       }
     }
   },
 
-  hideAllOverlays() {
-    this.applyOverlay({ type: EVENT.HIDE_ALL_OVERLAYS })
+  hideAll() {
+    this.applyModal({ type: EVENT.HIDE_ALL })
   },
 
-  applyOverlay({ component, props, overlayKey, type }) {
+  applyModal({ component, props, modalKey, type }) {
     switch (type) {
-      case EVENT.SHOW_OVERLAY:
-        this.snappshots.set(overlayKey, { component, props })
+      case EVENT.SHOW_MODAL:
+        this.snappshots.set(modalKey, { component, props })
         break
-      case EVENT.HIDE_ALL_OVERLAYS:
+      case EVENT.HIDE_ALL:
         this.snappshots.clear()
         break
       default:
-        this.snappshots.delete(overlayKey)
+        this.snappshots.delete(modalKey)
         break
     }
 
     const snappshotsArray = this.getSnappshotsArray()
-    eventManager.emit(EVENT.CHANGE_OVERLAY, snappshotsArray)
+    eventManager.emit(EVENT.CHANGE_MODAL, snappshotsArray)
   },
 }
 
