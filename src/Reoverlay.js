@@ -10,23 +10,22 @@ const Reoverlay = {
   config(configData = []) {
     validate(VALIDATE.CONFIG, configData)
 
-    // Set config data
     configData.forEach((item) => {
       this.modals.set(item.name, item.component)
     })
   },
 
   showModal(modal = null, props = {}) {
-    const modalType = validate(VALIDATE.SHOW_MODAL, modal)
+    const modalType = validate(VALIDATE.SHOW_MODAL, modal) //"string" | "component"
 
     if (modalType === 'string') {
-      // modal is a string here
       const modalKey = modal
-      const hasAlreadyDefinedModal = this.modals.has(modalKey)
+      const doesModalNameMatches = this.modals.has(modalKey)
 
-      if (!hasAlreadyDefinedModal) {
+      if (!doesModalNameMatches) {
         throw new Error(
-          "Reoverlay: Modal not found. You're probably trying to access a pre-configured modal which does not exist."
+          `Reoverlay: Modal not found. You're probably trying to access a pre-configured modal which does not exist. Make sure you already 
+          passed "${modalKey}" to Reoverlay.config().`
         )
       }
 
@@ -38,13 +37,12 @@ const Reoverlay = {
         type: EVENT.SHOW_MODAL,
       })
     } else {
-      const data = {
+      this.applyModal({
         component: modal,
         props,
         modalKey: shortid.generate(),
         type: EVENT.SHOW_MODAL,
-      }
-      this.applyModal(data)
+      })
     }
   },
 
@@ -57,17 +55,18 @@ const Reoverlay = {
     return snappshotsArray
   },
 
-  // If modal has no value, the last one gets hidden by default.
   hideModal(modal = null) {
+    // When modal is provided, it means a specific modal needs to be hidden.
+    // Otherwise the last one gets hidden by default.
     if (modal) {
       validate(VALIDATE.HIDE_MODAL, modal)
 
       const modalKey = modal
-      const hasAlreadyDefinedSnappshot = this.snappshots.has(modalKey)
+      const doesTargetModalExist = this.snappshots.has(modalKey)
 
-      if (!hasAlreadyDefinedSnappshot) {
+      if (!doesTargetModalExist) {
         throw new Error(
-          "Reoverlay: Snappshot not found. You're probably trying to hide an modal which does not exist."
+          "Reoverlay: Snappshot not found. You're probably trying to hide a modal that does not exist."
         )
       } else {
         const snappshot = this.snappshots.get(modalKey)
@@ -84,7 +83,7 @@ const Reoverlay = {
       if (lastSnappshot) {
         this.applyModal({ ...lastSnappshot, type: EVENT.HIDE_MODAL })
       } else {
-        console.error("Reoverlay: There's no active modal to be hidden")
+        console.error("Reoverlay: There's no active modal to be hidden.")
       }
     }
   },
