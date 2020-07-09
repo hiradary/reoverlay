@@ -1,8 +1,4 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-
 import React, { useRef } from 'react'
-import PropTypes from 'prop-types'
 
 import Reoverlay from './Reoverlay'
 
@@ -35,24 +31,6 @@ const ModalWrapper = ({
       <div className={`reOverlay__modalContainer ${contentContainerClassName}`}>{children}</div>
     </div>
   )
-}
-
-ModalWrapper.propTypes = {
-  children: PropTypes.node,
-  wrapperClassName: PropTypes.string,
-  contentContainerClassName: PropTypes.string,
-  animation: PropTypes.oneOf([
-    'fade',
-    'zoom',
-    'flip',
-    'door',
-    'rotate',
-    'slideUp',
-    'slideDown',
-    'slideLeft',
-    'slideRight',
-  ]),
-  onClose: PropTypes.func,
 }
 
 ModalWrapper.defaultProps = {

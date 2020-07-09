@@ -3,6 +3,7 @@
   "version": "1.0.0-beta.2",
   "description": "The missing solution for managing modals in React.",
   "main": "lib/index.js",
+  "types": "index.d.ts",
   "keywords": [
     "modal",
     "overlay",
@@ -10,6 +11,10 @@
     "react modal",
     "react overlay",
     "reoverlay"
+  ],
+  "files": [
+    "lib",
+    "index.d.ts"
   ],
   "repository": {
     "type": "git",
@@ -25,7 +30,6 @@
     "build": "cross-env NODE_ENV=production rollup -c"
   },
   "dependencies": {
-    "prop-types": "^15.7.2",
     "shortid": "^2.2.15"
   },
   "devDependencies": {
