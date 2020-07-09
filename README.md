@@ -61,7 +61,7 @@ There are two ways you can use Reoverlay.
 `App.js`:
 ```javascript
 import React from 'react';
-import { OverlayContainer } from 'reoverlay';
+import { ModalContainer } from 'reoverlay';
 
 const App = () => {
   return (
@@ -69,7 +69,7 @@ const App = () => {
       ...
       <Routes />
       ...
-      <OverlayContainer />
+      <ModalContainer />
     </>
   )
 }
@@ -84,7 +84,7 @@ import { ConfirmModal } from '../modals';
 const PostPage = () => {
   
   const deletePost = () => {
-    Reoverlay.showOverlay(ConfirmModal, {
+    Reoverlay.showModal(ConfirmModal, {
       confirmText: "Are you sure you want to delete this post",
       onConfirm: () => {
         axios.delete(...)
@@ -110,7 +110,7 @@ import 'reoverlay/lib/ModalWrapper.css';
 const ConfirmModal = ({ confirmText, onConfirm }) => {
 
   const closeModal = () => {
-    Reoverlay.hideOverlay();
+    Reoverlay.hideModal();
   }
 
   return (
@@ -127,7 +127,7 @@ const ConfirmModal = ({ confirmText, onConfirm }) => {
 `App.js`:
 ```javascript
 import React from 'react';
-import { Reoverlay, OverlayContainer } from 'reoverlay';
+import { Reoverlay, ModalContainer } from 'reoverlay';
 
 import { AuthModal, DeleteModal, ConfirmModal } from '../modals';
 
@@ -153,7 +153,7 @@ const App = () => {
       ...
       <Routes />
       ...
-      <OverlayContainer />
+      <ModalContainer />
     </>
   )
 }
@@ -167,7 +167,7 @@ import { Reoverlay } from 'reoverlay';
 const PostPage = () => {
   
   const deletePost = () => {
-    Reoverlay.showOverlay("MyConfirmModal", {
+    Reoverlay.showModal("MyConfirmModal", {
       confirmText: "Are you sure you want to delete this post",
       onConfirm: () => {
         axios.delete(...)
@@ -193,7 +193,7 @@ import 'reoverlay/lib/ModalWrapper.css';
 const ConfirmModal = ({ confirmText, onConfirm }) => {
 
   const closeModal = () => {
-    Reoverlay.hideOverlay();
+    Reoverlay.hideModal();
   }
 
   return (
@@ -205,7 +205,7 @@ const ConfirmModal = ({ confirmText, onConfirm }) => {
   )
 }
 ```
-<strong>NOTE:</strong> Using ModalWrapper is totally optional. It's just a half-transparent full-screen div, with a few preset animation options. You can use your own ModalWrapper. In that case you can fully customize animation, responsiveness, etc. Check the code for [ModalWrapper](https://github.com/hiradary/reoverlay/blob/master/src/ModalWrapper.js).
+<strong>NOTE:</strong> Using `ModalWrapper` is totally optional. It's just a half-transparent full-screen div, with a few preset animation options. You can use your own ModalWrapper. In that case you can fully customize animation, responsiveness, etc. Check the code for [ModalWrapper](https://github.com/hiradary/reoverlay/blob/master/src/ModalWrapper.js).
 
 ## Props ⚒
 
@@ -239,11 +239,11 @@ Reoverlay.config([
 ```
 <strong>NOTE:</strong> If you're code-splitting your app and you don't want to import all modals in the entry part, you don't need to use this. Please refer [usage](#usage-) for more info.
 
-##### `showOverlay(overlay, props)`
+##### `showModal(modal, props)`
 
 | Name    | Type                  | Default | Descripiton                                                                                                 |
 |---------|-----------------------|---------|-------------------------------------------------------------------------------------------------------------|
-| overlay | `string` \| `React.FC`| `null`  | Either your modal's name (in case you've already passed that to Reoverlay.config()) or your modal component.|
+| modal | `string` \| `React.FC`| `null`  | Either your modal's name (in case you've already passed that to Reoverlay.config()) or your modal component.|
 | props   | `object`              | `{}`    | Optional. The props you want to be passed on the modal.                                                     |
 
 ```javascript
@@ -252,8 +252,8 @@ import { DeleteModal } from '../modals';
 
 const MyPage = () => {
   const showModal = () => {
-    Reoverlay.showOverlay(DeleteModal);
-    // or Reoverlay.showOverlay("DeleteModal")
+    Reoverlay.showModal(DeleteModal);
+    // or Reoverlay.showModal("DeleteModal")
   }
 
   return (
@@ -264,18 +264,18 @@ const MyPage = () => {
 }
 ```
 
-##### `hideOverlay(overlayName)`
+##### `hideModal(modalName)`
 
 | Name        |  Type    |  Default  | Descripiton                                                                           |
 |-------------|----------|-----------|---------------------------------------------------------------------------------------|
-| overlayName | `string` | `null`    | Optional. Specifies which modal gets hidden. It hides the last open modal by default. |
+| modalName | `string` | `null`    | Optional. Specifies which modal gets hidden. It hides the last open modal by default. |
 
 ```javascript
 import { Reoverlay, ModalWrapper } from 'reoverlay';
 
 const MyModal = () => {
   const closeModal = () => {
-    Reoverlay.hideOverlay();
+    Reoverlay.hideModal();
   }
 
   <ModalWrapper>
@@ -286,7 +286,7 @@ const MyModal = () => {
 
 const MyPage = () => {
   const showModal = () => {
-    Reoverlay.showOverlay(MyModal);
+    Reoverlay.showModal(MyModal);
   }
 
   return (
@@ -297,7 +297,7 @@ const MyPage = () => {
 }
 ```
 
-##### `hideAllOverlays()`
+##### `hideAll()`
 This comes in handy when dealing with multiple modals on top of each other (aka "Stacked Modals"). With this, you can hide all modals at once.
 
 ### `ModalWrapper` props
@@ -307,7 +307,7 @@ This comes in handy when dealing with multiple modals on top of each other (aka 
 | wrapperClassName          | `string`                                                                                                      | `''`                            | Additional CSS class for modal wrapper element.           |
 | contentContainerClassName | `string`                                                                                                      | `''`                            | Additional CSS class for modal content container element. |
 | animation                 | `'fade'` \| `'zoom'` \| `'flip'` \| `'door'` \| `'rotate'` \| `'slideUp'` \| `'slideDown'` \| `'slideLeft'` \| `'slideRight'` | `'fade'`                        | A preset of various animations for your modal.           |
-| onClose                   | `function`                                                                                                    | `() => Reoverlay.hideOverlay()` | Gets called when user clicks outside modal content.      |
+| onClose                   | `function`                                                                                                    | `() => Reoverlay.hideModal()` | Gets called when user clicks outside modal content.      |
 
 ## LICENSE
 [MIT](LICENSE)
