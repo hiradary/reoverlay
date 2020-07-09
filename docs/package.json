@@ -4,7 +4,6 @@
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "homepage": "https://hiradary.github.io/reoverlay",
   "dependencies": {
     "@svgr/webpack": "^5.4.0",
     "gatsby": "^2.23.10",
