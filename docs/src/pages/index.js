@@ -15,8 +15,7 @@ const IndexPage = () => (
           <Logo />
           <h1 className="header__title">Reoverlay</h1>
           <p className="header__description">
-            A react library that makes showing, organizing and managing modals
-            easier.
+          The missing solution for managing modals in React.
           </p>
           <div className="header__buttonContainer">
             <a

@@ -54,12 +54,20 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
         {
+          property: `og:image`,
+          content: 'http://s12.picofile.com/file/8402126226/reoverlay_github_cover.jpg',
+        },
+        {
+          property: `og:url`,
+          content: 'https://hiradary.github.io/reoverlay',
+        },
+        {
           property: `og:type`,
           content: `website`,
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,
@@ -74,9 +82,13 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
         {
+          name: `twitter:image:src`,
+          content: 'http://s12.picofile.com/file/8402126226/reoverlay_github_cover.jpg',
+        },
+        {
           name: "keywords",
           content:
-            "React,Overlay,Reoverlay,Modal,React Overlay,React Modal,Show Modal,Show Overlay",
+            "React,Modal,Reoverlay,Overlay,React Overlay,React Modal,Show Modal,Show Overlay",
         },
         {
           name: "theme-color",

@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Reoverlay`,
-    description: `A react library for your modals. Show, Organize and Manage like a boss.`,
+    description: `The missing solution for managing modals in React.`,
     author: `Hirad Arshadi`,
   },
   plugins: [
