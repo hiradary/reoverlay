@@ -19,6 +19,10 @@
   animation: ro-fade 0.3s forwards;
 }
 
+.reOverlay .reOverlay__modalWrapper .reOverlay__modalContainer {
+  background-color: white;
+}
+
 .reOverlay .reOverlay__modalWrapper.-ro-zoom .reOverlay__modalContainer {
   -webkit-animation: ro-zoom 0.3s cubic-bezier(0.4, 0, 0, 1.5) forwards;
   animation: ro-zoom 0.3s cubic-bezier(0.4, 0, 0, 1.5) forwards;
