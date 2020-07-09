@@ -17,7 +17,7 @@ const config = {
       browser: true,
     }),
     babel({
-      exclude: 'node_modules/**',
+      exclude: /node_modules/,
     }),
     commonjs(),
     copy({

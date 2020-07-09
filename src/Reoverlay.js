@@ -7,7 +7,7 @@ const Reoverlay = {
   overlays: new Map(),
   snappshots: new Map(),
 
-  config(configData) {
+  config(configData = []) {
     validate(VALIDATE.CONFIG, configData)
 
     // Set config data
@@ -16,7 +16,7 @@ const Reoverlay = {
     })
   },
 
-  showOverlay(overlay, props = {}) {
+  showOverlay(overlay = null, props = {}) {
     const overlayType = validate(VALIDATE.SHOW_OVERLAY, overlay)
 
     if (overlayType === 'string') {
@@ -57,7 +57,7 @@ const Reoverlay = {
     return snappshotsArray
   },
 
-  // If "overlay" is not specified, the last one will be hidden by default.
+  // If "overlay" is not specified, the last one gets hidden by default.
   hideOverlay(overlay = null) {
     if (overlay) {
       validate(VALIDATE.HIDE_OVERLAY, overlay)

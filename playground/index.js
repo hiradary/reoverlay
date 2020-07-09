@@ -32,9 +32,16 @@ const MyModal = ({ animationType, title }) => {
   )
 }
 
+Reoverlay.config([
+  {
+    name: 'MyModal',
+    component: MyModal,
+  },
+])
+
 const App = () => {
   const showModal = (animationType) => {
-    Reoverlay.showOverlay(MyModal, {
+    Reoverlay.showOverlay('MyModal', {
       animationType,
       title: `This is ${animationType} animation.`,
     })
