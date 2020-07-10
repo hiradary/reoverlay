@@ -22,7 +22,7 @@ There are many ways you can manage your modals in React. You can ([See a relevan
 - Use a modal component as a wrapper (like a button component) and include it wherever you trigger the hide/show of that modal.
 - The ‘portal’ approach that takes a modal and attaches it to document.body.
 - A top level modal component that shows different contents based on some property in the store.
-<p>Each one of these have their own cons & pros. Take a look at the following example:</p>
+<p>Each one of these has its own cons & pros. Take a look at the following example:</p>
 
 ```javascript
 import React, { useState } from 'react';
@@ -49,10 +49,10 @@ const HomePage = () => {
 ```
 This is the most commonly adopted approach. However, I believe it has a few drawbacks:
 - You might find it difficult to show modals on top of each other. (aka "Stacked Modals")
-- More boilerplate code. If you were to have 3 modals in a page, you had to use Modal component three times, declare more and more variables to handle visiblity, etc.
+- More boilerplate code. If you were to have 3 modals in a page, you had to use Modal component three times, declare more and more variables to handle visibility, etc.
 - Unlike reoverlay, you can't manage your modals outside React scope (e.g Store). Though it's not generally a good practice to manage modals/overlays outside React scope, It comes in handy in some cases. (e.g Using axios interceptors to show modals according to network status, access control, etc.)
 
-<strong>Reoverlay</strong>, on the other hand, offers a rather more readable and easy approach. You'll be given a top level modal component (`ModalContainer`), and a few APIs to handle triggering hide/show. Check [usage](#usage) to see how it works.
+<strong>Reoverlay</strong>, on the other hand, offers a rather more readable and easy approach. You'll be given a top-level modal component (`ModalContainer`), and a few APIs to handle triggering hide/show. Check [usage](#usage) to see how it works.
 
 ## Usage 🎯
 
@@ -102,7 +102,7 @@ const PostPage = () => {
   )
 }
 ```
-Your modal file: (`ConfirmModal` in this case):
+Your modal file (`ConfirmModal` in this case):
 ```javascript
 import React from 'react';
 import { ModalWrapper, Reoverlay } from 'reoverlay';
@@ -209,7 +209,7 @@ const ConfirmModal = ({ confirmText, onConfirm }) => {
   )
 }
 ```
-<strong>NOTE:</strong> Using `ModalWrapper` is totally optional. It's just a half-transparent full-screen div, with a few preset animation options. You can create and use your own ModalWrapper. In that case you can fully customize animation, responsiveness, etc. Check the code for [ModalWrapper](https://github.com/hiradary/reoverlay/blob/master/src/ModalWrapper.js).
+<strong>NOTE:</strong> Using `ModalWrapper` is optional. It's just a half-transparent full-screen div, with a few preset animation options. You can create and use your own ModalWrapper. In that case, you can fully customize animation, responsiveness, etc. Check the code for [ModalWrapper](https://github.com/hiradary/reoverlay/blob/master/src/ModalWrapper.js).
 
 ## Props ⚒
 
@@ -221,7 +221,7 @@ const ConfirmModal = ({ confirmText, onConfirm }) => {
 |------------|------------------------------------------------|---------|-------------------------------------|
 | configData | `Array<{ name: string, component: React.FC }>` | `[]`    | An array of modals along with their name. |
 
-This method must be called in the entry part of your application (e.g `App.js`), or basically before you attemp to show any modal. It takes an array of objects, containing data about your modals.
+This method must be called in the entry part of your application (e.g `App.js`), or basically before you attempt to show any modal. It takes an array of objects, containing data about your modals.
 
 ```javascript
 import { AuthModal, DeleteModal, PostModal } from '../modals';
@@ -241,7 +241,7 @@ Reoverlay.config([
   }
 ])
 ```
-<strong>NOTE:</strong> If you're code-splitting your app and you don't want to import all modals in the entry part, you don't need to use this. Please refer [usage](#usage-) for more info.
+<strong>NOTE:</strong> If you're code-splitting your app and you don't want to import all modals in the entry part, you don't need to use this. Please refer to [usage](#usage-) for more info.
 
 ##### `showModal(modal, props)`
 
@@ -313,7 +313,7 @@ This comes in handy when dealing with multiple modals on top of each other (aka 
 | wrapperClassName          | `string`                                                                                                      | `''`                            | Additional CSS class for modal wrapper element.           |
 | contentContainerClassName | `string`                                                                                                      | `''`                            | Additional CSS class for modal content container element. |
 | animation                 | `'fade'` \| `'zoom'` \| `'flip'` \| `'door'` \| `'rotate'` \| `'slideUp'` \| `'slideDown'` \| `'slideLeft'` \| `'slideRight'` | `'fade'`                        | A preset of various animations for your modal.           |
-| onClose                   | `function`                                                                                                    | `() => Reoverlay.hideModal()` | Gets called when user clicks outside modal content.      |
+| onClose                   | `function`                                                                                                    | `() => Reoverlay.hideModal()` | Gets called when the user clicks outside modal content.      |
 
 ## LICENSE
 [MIT](LICENSE)
