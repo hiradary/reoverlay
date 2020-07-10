@@ -1,6 +1,6 @@
 {
   "name": "reoverlay",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0",
   "description": "The missing solution for managing modals in React.",
   "main": "lib/index.js",
   "keywords": [
