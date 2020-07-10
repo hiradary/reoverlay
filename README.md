@@ -53,7 +53,7 @@ This is the most commonly adopted approach. However, I believe it has a few draw
 - More boilerplate code. If you were to have 3 modals in a page, you had to use Modal component three times, declare more and more variables to handle visibility, etc.
 - Unlike reoverlay, you can't manage your modals outside React scope (e.g Store). Though it's not generally a good practice to manage modals/overlays outside React scope, It comes in handy in some cases. (e.g Using axios interceptors to show modals according to network status, access control, etc.)
 
-<strong>Reoverlay</strong>, on the other hand, offers a rather more readable and easy approach. You'll be given a top-level modal component (`ModalContainer`), and a few APIs to handle triggering hide/show. Check [usage](#usage) to see how it works.
+<strong>Reoverlay</strong>, on the other hand, offers a rather more readable and easy approach. You'll be given a top-level modal component (`ModalContainer`), and a few APIs to handle triggering hide/show. Check [usage](#usage-) to see how it works.
 
 ## Usage 🎯
 
