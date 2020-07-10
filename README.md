@@ -25,9 +25,6 @@ There are many ways you can manage your modals in React. You can ([See a relevan
 <p>Each one of these has its own cons & pros. Take a look at the following example:</p>
 
 ```javascript
-import React, { useState } from 'react';
-import Modal from 'somelibrary';
-
 const HomePage = () => {
   const [isDeleteModalOpen, setDeleteModal] = useState(false)
   const [isConfirmModalOpen, setConfirmModal] = useState(false)
