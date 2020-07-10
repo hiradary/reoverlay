@@ -312,5 +312,9 @@ This comes in handy when dealing with multiple modals on top of each other (aka 
 | animation                 | `'fade'` \| `'zoom'` \| `'flip'` \| `'door'` \| `'rotate'` \| `'slideUp'` \| `'slideDown'` \| `'slideLeft'` \| `'slideRight'` | `'fade'`                        | A preset of various animations for your modal.           |
 | onClose                   | `function`                                                                                                    | `() => Reoverlay.hideModal()` | Gets called when the user clicks outside modal content.      |
 
+## Support ❤️
+
+PRs are welcome! You can also [buy me a coffee](https://buymeacoffee.com/hiradary) if you wish.
+
 ## LICENSE
 [MIT](LICENSE)
