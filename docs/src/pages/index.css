@@ -102,6 +102,10 @@ main {
   line-height: 1.5em;
 }
 
+.section .section__description .section__link {
+  color: var(--color-blue-dark-secondary);
+}
+
 .section .section__animationTypesContainer {
   width: 100%;
   display: flex;
@@ -124,6 +128,42 @@ main {
   user-select: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+}
+
+.modalContent {
+  padding: 2em 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modalContent .modalContent__title {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.modalContent .modalContent__buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.modalContent .modalContent__buttonContainer button {
+  border: 1px solid #d7dee9;
+  padding: 1em 2.5em;
+  border-radius: 1em;
+  margin: 0 1em;
+  display: flex;
+  align-items: center;
+  color: var(--color-blue-dark-primary);
+  user-select: none;
+  background-color: white;
+  transition: 0.3s background-color;
+}
+
+.modalContent .modalContent__buttonContainer button:hover {
+  background-color: var(--color-gray-light);
 }
 
 .footer {
@@ -163,6 +203,15 @@ main {
 @media (max-width: 768px) {
   .container {
     padding: 0 1.25em;
+  }
+  .modalContent {
+    padding: 2em 3em;
+  }
+  .modalContent .modalContent__buttonContainer {
+    flex-direction: column;
+  }
+  .modalContent .modalContent__buttonContainer button:not(:last-child) {
+    margin-bottom: 1em;
   }
 }
 

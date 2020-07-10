@@ -17,6 +17,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
+    "reoverlay": "^1.0.0-beta.3",
     "sharp": "^0.25.4"
   },
   "devDependencies": {
