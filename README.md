@@ -17,6 +17,10 @@ npm install reoverlay --save
 yarn add reoverlay
 ```
 
+## Demo ⭐️
+
+You can see a couple of examples on the [website](https://hiradary.github.io/reoverlay).
+
 ## Philosophy 🔖
 There are many ways you can manage your modals in React. You can ([See a relevant article](https://codeburst.io/modals-in-react-f6c3ff9f4701)):
 - Use a modal component as a wrapper (like a button component) and include it wherever you trigger the hide/show of that modal.
