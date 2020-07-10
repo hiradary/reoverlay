@@ -22,7 +22,7 @@ There are many ways you can manage your modals in React. You can ([See a relevan
 - Use a modal component as a wrapper (like a button component) and include it wherever you trigger the hide/show of that modal.
 - The ‘portal’ approach that takes a modal and attaches it to document.body.
 - A top level modal component that shows different contents based on some property in the store.
-<p>Each one of them has their own cons & pros. Reoverlay, however, is rather a combination of these three methods. Take a look at the following example:</p>
+<p>Each one of these have their own cons & pros. Take a look at the following example:</p>
 
 ```javascript
 import React, { useState } from 'react';
@@ -47,16 +47,18 @@ const HomePage = () => {
   )
 }
 ```
-This is the most commonly adopted aproach. However, I believe it has a few drawbacks:
+This is the most commonly adopted approach. However, I believe it has a few drawbacks:
 - You might find it difficult to show modals on top of each other. (aka "Stacked Modals")
 - More boilerplate code. If you were to have 3 modals in a page, you had to use Modal component three times, declare more and more variables to handle visiblity, etc.
-- Unlike reoverlay, you can't manage your modals outside React scope (e.g Store). Though it's not generally a good practice to manage modals/overlays outside React scope, It comes in handy in some cases. (e.g Using axios interceptors to show modals for network status, access control, etc.)
+- Unlike reoverlay, you can't manage your modals outside React scope (e.g Store). Though it's not generally a good practice to manage modals/overlays outside React scope, It comes in handy in some cases. (e.g Using axios interceptors to show modals according to network status, access control, etc.)
+
+<strong>Reoverlay</strong>, on the other hand, offers a rather more readable and easy approach. You'll be given a top level modal component (`ModalContainer`), and a few APIs to handle triggering hide/show. Check [usage](#usage) to see how it works.
 
 ## Usage 🎯
 
 There are two ways you can use Reoverlay.
 
-### 1) Pass on your modals directly
+### #1 - Pass on your modals directly
 
 `App.js`:
 ```javascript
@@ -85,7 +87,7 @@ const PostPage = () => {
   
   const deletePost = () => {
     Reoverlay.showModal(ConfirmModal, {
-      confirmText: "Are you sure you want to delete this post",
+      text: "Are you sure you want to delete this post",
       onConfirm: () => {
         axios.delete(...)
       }
@@ -122,7 +124,9 @@ const ConfirmModal = ({ confirmText, onConfirm }) => {
   )
 }
 ```
-### 2) Pass on your modal's name
+This is the simplest usage. If you don't want your modals to be passed directly to `Reoverlay.showModal(myModal)`, you could go on with the second approach.
+
+### #2 - Pass on your modal's name
 
 `App.js`:
 ```javascript
@@ -167,7 +171,7 @@ import { Reoverlay } from 'reoverlay';
 const PostPage = () => {
   
   const deletePost = () => {
-    Reoverlay.showModal("MyConfirmModal", {
+    Reoverlay.showModal("ConfirmModal", {
       confirmText: "Are you sure you want to delete this post",
       onConfirm: () => {
         axios.delete(...)
@@ -205,7 +209,7 @@ const ConfirmModal = ({ confirmText, onConfirm }) => {
   )
 }
 ```
-<strong>NOTE:</strong> Using `ModalWrapper` is totally optional. It's just a half-transparent full-screen div, with a few preset animation options. You can use your own ModalWrapper. In that case you can fully customize animation, responsiveness, etc. Check the code for [ModalWrapper](https://github.com/hiradary/reoverlay/blob/master/src/ModalWrapper.js).
+<strong>NOTE:</strong> Using `ModalWrapper` is totally optional. It's just a half-transparent full-screen div, with a few preset animation options. You can create and use your own ModalWrapper. In that case you can fully customize animation, responsiveness, etc. Check the code for [ModalWrapper](https://github.com/hiradary/reoverlay/blob/master/src/ModalWrapper.js).
 
 ## Props ⚒
 
@@ -215,7 +219,7 @@ const ConfirmModal = ({ confirmText, onConfirm }) => {
 
 | Name       | Type                                           | Default | Descripiton                         |
 |------------|------------------------------------------------|---------|-------------------------------------|
-| configData | `Array<{ name: string, component: React.FC }>` | `[]`    | An array of modals with their name. |
+| configData | `Array<{ name: string, component: React.FC }>` | `[]`    | An array of modals along with their name. |
 
 This method must be called in the entry part of your application (e.g `App.js`), or basically before you attemp to show any modal. It takes an array of objects, containing data about your modals.
 
@@ -243,17 +247,17 @@ Reoverlay.config([
 
 | Name    | Type                  | Default | Descripiton                                                                                                 |
 |---------|-----------------------|---------|-------------------------------------------------------------------------------------------------------------|
-| modal | `string` \| `React.FC`| `null`  | Either your modal's name (in case you've already passed that to Reoverlay.config()) or your modal component.|
-| props   | `object`              | `{}`    | Optional. The props you want to be passed on the modal.                                                     |
+| modal | `string` \| `React.FC`| `null`  | Either your modal's name (in case you've already passed that to `Reoverlay.config()`) or your modal component.|
+| props   | `object`              | `{}`    | Optional                                                 |
 
 ```javascript
 import { Reoverlay } from 'reoverlay';
-import { DeleteModal } from '../modals';
+import { MyModal } from '../modals';
 
 const MyPage = () => {
   const showModal = () => {
-    Reoverlay.showModal(DeleteModal);
-    // or Reoverlay.showModal("DeleteModal")
+    Reoverlay.showModal(MyModal);
+    // or Reoverlay.showModal("MyModal")
   }
 
   return (
@@ -268,7 +272,7 @@ const MyPage = () => {
 
 | Name        |  Type    |  Default  | Descripiton                                                                           |
 |-------------|----------|-----------|---------------------------------------------------------------------------------------|
-| modalName | `string` | `null`    | Optional. Specifies which modal gets hidden. It hides the last open modal by default. |
+| modalName | `string` | `null`    | Optional. Specifies which modal gets hidden. By default, the last visible modal gets hidden. |
 
 ```javascript
 import { Reoverlay, ModalWrapper } from 'reoverlay';
@@ -278,10 +282,12 @@ const MyModal = () => {
     Reoverlay.hideModal();
   }
 
-  <ModalWrapper>
-    <h1>My modal content...</h1>
-    <button onClick={closeModal}>Close modal</button>
-  </ModalWrapper>
+  return (
+    <ModalWrapper>
+      <h1>My modal content...</h1>
+      <button onClick={closeModal}>Close modal</button>
+    </ModalWrapper>
+  )
 }
 
 const MyPage = () => {
