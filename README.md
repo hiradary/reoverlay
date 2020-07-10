@@ -3,8 +3,8 @@
 ![Size](https://img.shields.io/bundlephobia/minzip/reoverlay)
 ![Downloads](https://img.shields.io/npm/dw/reoverlay)
 ![Version](https://img.shields.io/npm/v/reoverlay)
-![Twitter](https://img.shields.io/twitter/follow/hiradary?style=social)
 ![NPM License](https://img.shields.io/npm/l/reoverlay)
+![Twitter](https://img.shields.io/twitter/follow/hiradary?style=social)
 <p>The missing solution for managing modals in React.</p>
 
 ![Reoverlay](http://s12.picofile.com/file/8402126226/reoverlay_github_cover.jpg)
