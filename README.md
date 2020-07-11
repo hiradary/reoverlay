@@ -88,7 +88,7 @@ const PostPage = () => {
   
   const deletePost = () => {
     Reoverlay.showModal(ConfirmModal, {
-      text: "Are you sure you want to delete this post",
+      confirmText: "Are you sure you want to delete this post",
       onConfirm: () => {
         axios.delete(...)
       }
