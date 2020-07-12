@@ -1,27 +1,23 @@
-const eventManager = (() => {
-  const subscribes = new Map()
+class eventManager {
+  constructor() {
+    this.subscribes = new Map()
+  }
 
-  const on = (eventName, callback) => {
-    if (!subscribes.has(eventName)) {
-      subscribes.set(eventName, [])
+  on(eventName, callback) {
+    if (!this.subscribes.has(eventName)) {
+      this.subscribes.set(eventName, [])
     }
-    subscribes.get(eventName).push(callback)
+    this.subscribes.get(eventName).push(callback)
   }
 
-  const off = (eventName) => {
-    subscribes.delete(eventName)
+  off(eventName) {
+    this.subscribes.delete(eventName)
   }
 
-  const emit = (eventName, args) => {
-    if (!subscribes.has(eventName)) return
-    subscribes.get(eventName).forEach((callback) => callback(args))
+  emit(eventName, args) {
+    if (!this.subscribes.has(eventName)) return
+    this.subscribes.get(eventName).forEach((callback) => callback(args))
   }
+}
 
-  return {
-    on,
-    off,
-    emit,
-  }
-})()
-
-export default eventManager
+export default new eventManager()
