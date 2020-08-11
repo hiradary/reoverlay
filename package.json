@@ -25,6 +25,7 @@
     "build": "cross-env NODE_ENV=production rollup -c"
   },
   "dependencies": {
+    "prop-types": "^15.7.2",
     "shortid": "^2.2.15"
   },
   "peerDependencies": {
