@@ -1,6 +1,6 @@
 {
   "name": "reoverlay",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "The missing solution for managing modals in React.",
   "main": "lib/index.js",
   "keywords": [
@@ -25,7 +25,8 @@
     "build": "cross-env NODE_ENV=production rollup -c"
   },
   "dependencies": {
-    "shortid": "^2.2.15"
+    "nanoid": "^3.2.0",
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
