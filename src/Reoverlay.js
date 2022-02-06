@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid/non-secure'
 
 import { VALIDATE, EVENT } from './constants'
 import { validate, eventManager, getLastElement } from './utils'
