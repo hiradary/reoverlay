@@ -1,4 +1,4 @@
-import shortid from 'shortid'
+import { nanoid } from 'nanoid'
 
 import { VALIDATE, EVENT } from './constants'
 import { validate, eventManager, getLastElement } from './utils'
@@ -40,7 +40,7 @@ const Reoverlay = {
       this.applyModal({
         component: modal,
         props,
-        modalKey: shortid.generate(),
+        modalKey: nanoid(),
         type: EVENT.SHOW_MODAL,
       })
     }
