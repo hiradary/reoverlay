@@ -1,0 +1,41 @@
+{
+  "name": "landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reoverlay's landing page.",
+  "author": "Hirad Arshadi <hey@hiradary.me>",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+  },
+  "dependencies": {
+    "@svgr/webpack": "^6.3.1",
+    "gatsby": "^4.22.0",
+    "gatsby-plugin-react-helmet": "^5.22.0",
+    "gatsby-plugin-sharp": "^4.22.0",
+    "gatsby-plugin-svgr": "^3.0.0-beta.0",
+    "gatsby-source-filesystem": "^4.22.0",
+    "gatsby-transformer-sharp": "^4.22.0",
+    "prismjs": "^1.29.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-helmet": "^6.1.0",
+    "reoverlay": "^1.0.3",
+    "sharp": "^0.30.7"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.45",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "gh-pages": "^4.0.0",
+    "typescript": "^4.8.2"
+  }
+}

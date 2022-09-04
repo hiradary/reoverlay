@@ -1,22 +1,24 @@
-import React from "react"
-import { Reoverlay, ModalWrapper, ModalContainer } from "reoverlay"
-import "reoverlay/lib/ModalWrapper.css"
+import React from 'react'
+import { Reoverlay, ModalWrapper, ModalContainer } from 'reoverlay'
+import 'reoverlay/lib/ModalWrapper.css'
 
-import { Icon, SEO, Code } from "../components"
-import { ANIMATION_TYPES, INSTALLATION_CODE } from "../constants"
-import { ReactComponent as Logo } from "../images/logo.svg"
-import myPhoto from "../images/me.jpg"
-import "./index.css"
+import '../styles/reset.css'
+import '../styles/variables.css'
+import '../styles/fonts.css'
+import '../styles/global.css'
+import '../styles/prism.css'
+
+import { Icon, SEO, Code } from '../components'
+import { ANIMATION_TYPES, INSTALLATION_CODE } from '../constants'
+import { ReactComponent as Logo } from '../images/logo.svg'
+import myPhoto from '../images/me.jpg'
+import './index.css'
 
 const Modal3 = ({ animation }) => {
   return (
-    <ModalWrapper
-      animation={animation}
-      contentContainerClassName="modalContent"
-    >
+    <ModalWrapper animation={animation} contentContainerClassName="modalContent">
       <h3 className="modalContent__title">
-        #3 Modal. Ok that's enough 😆 (Though you can keep stacking up as you
-        wish.)
+        #3 Modal. Ok that's enough 😆 (Though you can keep stacking up as you wish.)
       </h3>
       <div className="modalContent__buttonContainer">
         <button onClick={() => Reoverlay.hideModal()}>Hide</button>
@@ -28,17 +30,12 @@ const Modal3 = ({ animation }) => {
 
 const Modal2 = ({ animation }) => {
   return (
-    <ModalWrapper
-      animation={animation}
-      contentContainerClassName="modalContent"
-    >
+    <ModalWrapper animation={animation} contentContainerClassName="modalContent">
       <h3 className="modalContent__title">
         #2 Modal. It's getting dark here 🌗. Wanna see the third one?
       </h3>
       <div className="modalContent__buttonContainer">
-        <button onClick={() => Reoverlay.showModal(Modal3)}>
-          Heck yeah! Show #3 Modal
-        </button>
+        <button onClick={() => Reoverlay.showModal(Modal3)}>Heck yeah! Show #3 Modal</button>
         <button onClick={() => Reoverlay.hideModal()}>Hide</button>
         <button onClick={() => Reoverlay.hideAll()}>Hide all</button>
       </div>
@@ -48,17 +45,10 @@ const Modal2 = ({ animation }) => {
 
 const Modal1 = ({ animation }) => {
   return (
-    <ModalWrapper
-      animation={animation}
-      contentContainerClassName="modalContent"
-    >
-      <h3 className="modalContent__title">
-        #1 Modal. So sweet! ❤️. Wanna see more?
-      </h3>
+    <ModalWrapper animation={animation} contentContainerClassName="modalContent">
+      <h3 className="modalContent__title">#1 Modal. So sweet! ❤️. Wanna see more?</h3>
       <div className="modalContent__buttonContainer">
-        <button onClick={() => Reoverlay.showModal(Modal2)}>
-          Yup! Show #2 Modal
-        </button>
+        <button onClick={() => Reoverlay.showModal(Modal2)}>Yup! Show #2 Modal</button>
         <button onClick={() => Reoverlay.hideModal()}>Hide</button>
       </div>
     </ModalWrapper>
@@ -66,7 +56,7 @@ const Modal1 = ({ animation }) => {
 }
 
 const IndexPage = () => {
-  const showModal = animation => {
+  const showModal = (animation) => {
     Reoverlay.showModal(Modal1, { animation })
   }
 
@@ -97,9 +87,7 @@ const IndexPage = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="header__donationButtonText">
-                  Buy me a coffee
-                </span>
+                <span className="header__donationButtonText">Buy me a coffee</span>
                 <Icon name="donation" />
               </a>
             </div>
@@ -110,8 +98,7 @@ const IndexPage = () => {
           <section className="section">
             <h3 className="section__title">Animation types</h3>
             <p className="section__description">
-              There are quite a few preset animations. You can create your own
-              custom animation too!
+              There are quite a few preset animations. You can create your own custom animation too!
             </p>
 
             <div className="section__animationTypesContainer">
@@ -130,7 +117,7 @@ const IndexPage = () => {
           <section className="section">
             <h3 className="section__title">Usage, Props, etc.</h3>
             <p className="section__description">
-              You can find more information on{" "}
+              You can find more information on{' '}
               <a
                 href="https://github.com/hiradary/reoverlay"
                 target="_blank"
@@ -145,15 +132,15 @@ const IndexPage = () => {
 
           <footer className="footer">
             <img
-              src={myPhoto}
+              src={'https://avatars.githubusercontent.com/u/29271309?v=4'}
               alt="Hirad Arshadi"
               className="footer__profilePhoto"
             />
             <p className="footer__intentionText">
-              Made with{" "}
+              Made with{' '}
               <span role="img" aria-label="Love">
                 ❤️
-              </span>{" "}
+              </span>{' '}
               for the react community
             </p>
             <a

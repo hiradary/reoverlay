@@ -1,6 +1,7 @@
 {
   "name": "reoverlay",
-  "version": "1.0.0",
+  "private": true,
+  "version": "1.0.3",
   "description": "The missing solution for managing modals in React.",
   "main": "lib/index.js",
   "keywords": [
@@ -18,15 +19,15 @@
   "bugs": {
     "url": "https://github.com/hiradary/reoverlay/issues"
   },
-  "author": "Hirad Arshadi <hiradwork@gmail.com>",
+  "author": "Hirad Arshadi <hey@hiradary.me>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --open --hot --mode development",
-    "build": "cross-env NODE_ENV=production rollup -c"
+    "start:lib": "webpack-dev-server --open --hot --mode development",
+    "build:lib": "cross-env NODE_ENV=production rollup -c"
   },
   "dependencies": {
-    "prop-types": "^15.7.2",
-    "shortid": "^2.2.15"
+    "nanoid": "^3.2.0",
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
