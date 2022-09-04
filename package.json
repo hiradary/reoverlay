@@ -22,8 +22,8 @@
   "author": "Hirad Arshadi <hey@hiradary.me>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --open --hot --mode development",
-    "build": "cross-env NODE_ENV=production rollup -c"
+    "start:lib": "webpack-dev-server --open --hot --mode development",
+    "build:lib": "cross-env NODE_ENV=production rollup -c"
   },
   "dependencies": {
     "nanoid": "^3.2.0",

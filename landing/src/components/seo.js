@@ -5,12 +5,12 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Helmet } from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
 
-import logoFavIcon from "../images/logo.png"
+import logoFavIcon from '../images/logo.png'
 
 function SEO({ description, lang, meta, title }) {
   const { site } = useStaticQuery(
@@ -42,8 +42,8 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
         {
-          name: "viewport",
-          content: "width=device-width, initial-scale=1.0",
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1.0',
         },
         {
           property: `og:title`,
@@ -86,13 +86,13 @@ function SEO({ description, lang, meta, title }) {
           content: 'http://s12.picofile.com/file/8402126226/reoverlay_github_cover.jpg',
         },
         {
-          name: "keywords",
+          name: 'keywords',
           content:
-            "React,Modal,Reoverlay,Overlay,React Overlay,React Modal,Show Modal,Show Overlay",
+            'React,Modal,Reoverlay,Overlay,React Overlay,React Modal,Show Modal,Show Overlay',
         },
         {
-          name: "theme-color",
-          content: "#2578ff",
+          name: 'theme-color',
+          content: '#2578ff',
         },
       ].concat(meta)}
     >
