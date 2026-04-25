@@ -1,324 +1,222 @@
 # Reoverlay
 
-![Size](https://img.shields.io/bundlephobia/minzip/reoverlay)
-![Downloads](https://img.shields.io/npm/dw/reoverlay)
-![Version](https://img.shields.io/npm/v/reoverlay)
-![NPM License](https://img.shields.io/npm/l/reoverlay)
-![Twitter](https://img.shields.io/twitter/follow/hiradary?style=social)
-<p>The missing solution for managing modals in React.</p>
+A tiny, typed modal manager for React. Reoverlay gives you one top-level
+`ModalContainer` and a small imperative API for opening, stacking, and closing
+modals from anywhere in your app.
 
-![Reoverlay](http://s12.picofile.com/file/8402126226/reoverlay_github_cover.jpg)
+[![Version](https://img.shields.io/npm/v/reoverlay)](https://www.npmjs.com/package/reoverlay)
+[![Downloads](https://img.shields.io/npm/dw/reoverlay)](https://www.npmjs.com/package/reoverlay)
+[![License](https://img.shields.io/npm/l/reoverlay)](LICENSE)
 
-## Installation 🔥
+## Install
+
 ```bash
-npm install reoverlay --save
+pnpm add reoverlay
+```
 
-# or if you prefer Yarn:
+```bash
+npm install reoverlay
 yarn add reoverlay
 ```
 
-## Demo ⭐️
+## Quick Start
 
-You can see a couple of examples on the [website](https://hiradary.github.io/reoverlay).
+Mount `ModalContainer` once near the root of your app.
 
-## Philosophy 🔖
-There are many ways you can manage your modals in React. You can ([See a relevant article](https://codeburst.io/modals-in-react-f6c3ff9f4701)):
-- Use a modal component as a wrapper (like a button component) and include it wherever you trigger the hide/show of that modal.
-- The ‘portal’ approach that takes a modal and attaches it to document.body.
-- A top level modal component that shows different contents based on some property in the store.
-<p>Each one of these has its own cons & pros. Take a look at the following example:</p>
+```tsx
+import { ModalContainer } from 'reoverlay'
 
-```javascript
-const HomePage = () => {
-  const [isDeleteModalOpen, setDeleteModal] = useState(false)
-  const [isConfirmModalOpen, setConfirmModal] = useState(false)
-  
-  return (
-    <div>
-      <Modal isOpen={isDeleteModalOpen}>
-        ...
-      </Modal>
-      <Modal isOpen={isConfirmModalOpen}>
-        ...
-      </Modal>
-      ...
-      <button onClick={() => setDeleteModal(true)}>Show delete modal</button>
-      <button onClick={() => setConfirmModal(true)}>Show confirm modal</button>
-    </div>
-  )
-}
-```
-This is the most commonly adopted approach. However, I believe it has a few drawbacks:
-- You might find it difficult to show modals on top of each other. (aka "Stacked Modals")
-- More boilerplate code. If you were to have 3 modals in a page, you had to use Modal component three times, declare more and more variables to handle visibility, etc.
-- Unlike reoverlay, you can't manage your modals outside React scope (e.g Store). Though it's not generally a good practice to manage modals/overlays outside React scope, It comes in handy in some cases. (e.g Using axios interceptors to show modals according to network status, access control, etc.)
-
-<strong>Reoverlay</strong>, on the other hand, offers a rather more readable and easier approach. You'll be given a top-level modal component (`ModalContainer`), and a few APIs to handle triggering hide/show. Check [usage](#usage-) to see how it works.
-
-## Usage 🎯
-
-There are two ways you can use Reoverlay.
-
-### #1 - Pass on your modals directly
-
-`App.js`:
-```javascript
-import React from 'react';
-import { ModalContainer } from 'reoverlay';
-
-const App = () => {
+export function App() {
   return (
     <>
-      ...
       <Routes />
-      ...
-      <ModalContainer />
-    </>
-  )
-}
-```
-Later where you want to show your modal:
-```javascript
-import React from 'react';
-import { Reoverlay } from 'reoverlay';
-
-import { ConfirmModal } from '../modals';
-
-const PostPage = () => {
-  
-  const deletePost = () => {
-    Reoverlay.showModal(ConfirmModal, {
-      text: "Are you sure you want to delete this post",
-      onConfirm: () => {
-        axios.delete(...)
-      }
-    })
-  }
-
-  return (
-    <div>
-      <p>This is your post page</p>
-      <button onClick={deletePost}>Delete this post</button>
-    </div>
-  )
-}
-```
-Your modal file (`ConfirmModal` in this case):
-```javascript
-import React from 'react';
-import { ModalWrapper, Reoverlay } from 'reoverlay';
-
-import 'reoverlay/lib/ModalWrapper.css';
-
-const ConfirmModal = ({ confirmText, onConfirm }) => {
-
-  const closeModal = () => {
-    Reoverlay.hideModal();
-  }
-
-  return (
-    <ModalWrapper>
-      {confirmText}
-      <button onClick={onConfirm}>Yes</button>
-      <button onClick={closeModal}>No</button>
-    </ModalWrapper>
-  )
-}
-```
-This is the simplest usage. If you don't want your modals to be passed directly to `Reoverlay.showModal(myModal)`, you could go on with the second approach.
-
-### #2 - Pass on your modal's name
-
-`App.js`:
-```javascript
-import React from 'react';
-import { Reoverlay, ModalContainer } from 'reoverlay';
-
-import { AuthModal, DeleteModal, ConfirmModal } from '../modals';
-
-// Here you pass your modals to Reoverlay
-Reoverlay.config([
-  {
-    name: "AuthModal",
-    component: AuthModal
-  },
-  {
-    name: "DeleteModal",
-    component: DeleteModal
-  },
-  {
-    name: "ConfirmModal",
-    component: ConfirmModal
-  }
-])
-
-const App = () => {
-  return (
-    <>
-      ...
-      <Routes />
-      ...
       <ModalContainer />
     </>
   )
 }
 ```
 
-Later where you want to show your modal:
-```javascript
-import React from 'react';
-import { Reoverlay } from 'reoverlay';
+Create a modal. `ModalWrapper` is optional, but it provides the default backdrop,
+animations, outside-click close behavior, and Escape close behavior.
 
-const PostPage = () => {
-  
-  const deletePost = () => {
-    Reoverlay.showModal("ConfirmModal", {
-      confirmText: "Are you sure you want to delete this post",
-      onConfirm: () => {
-        axios.delete(...)
-      }
-    })
-  }
+```tsx
+import { ModalWrapper, Reoverlay } from 'reoverlay'
+import 'reoverlay/ModalWrapper.css'
 
-  return (
-    <div>
-      <p>This is your post page</p>
-      <button onClick={deletePost}>Delete this post</button>
-    </div>
-  )
+type ConfirmModalProps = {
+  message: string
+  onConfirm: () => void
 }
-```
-Your modal file: (`ConfirmModal` in this case):
-```javascript
-import React from 'react';
-import { ModalWrapper, Reoverlay } from 'reoverlay';
 
-import 'reoverlay/lib/ModalWrapper.css';
-
-const ConfirmModal = ({ confirmText, onConfirm }) => {
-
-  const closeModal = () => {
-    Reoverlay.hideModal();
-  }
-
+export function ConfirmModal({ message, onConfirm }: ConfirmModalProps) {
   return (
-    <ModalWrapper>
-      {confirmText}
-      <button onClick={onConfirm}>Yes</button>
-      <button onClick={closeModal}>No</button>
+    <ModalWrapper aria-label="Confirm action">
+      <p>{message}</p>
+      <button onClick={onConfirm} type="button">
+        Confirm
+      </button>
+      <button onClick={() => Reoverlay.hideModal()} type="button">
+        Cancel
+      </button>
     </ModalWrapper>
   )
 }
 ```
-<strong>NOTE:</strong> Using `ModalWrapper` is optional. It's just a half-transparent full-screen div, with a few preset animation options. You can create and use your own ModalWrapper. In that case, you can fully customize animation, responsiveness, etc. Check the code for [ModalWrapper](https://github.com/hiradary/reoverlay/blob/master/src/ModalWrapper.js).
 
-## Props ⚒
+Open the modal directly.
 
-### Reoverlay methods
+```tsx
+import { Reoverlay } from 'reoverlay'
+import { ConfirmModal } from './ConfirmModal'
 
-##### `config(configData)`
+Reoverlay.showModal(ConfirmModal, {
+  message: 'Delete this post?',
+  onConfirm: () => {
+    Reoverlay.hideModal()
+  },
+})
+```
 
-| Name       | Type                                           | Default | Descripiton                         |
-|------------|------------------------------------------------|---------|-------------------------------------|
-| configData | `Array<{ name: string, component: React.FC }>` | `[]`    | An array of modals along with their name. |
+## Named Modals
 
-This method must be called in the entry part of your application (e.g `App.js`), or basically before you attempt to show any modal. It takes an array of objects, containing data about your modals.
+You can configure modal names once and open them later by string. This is useful
+for app-wide modals, interceptors, and places where importing the modal component
+would be awkward.
 
-```javascript
-import { AuthModal, DeleteModal, PostModal } from '../modals';
+```tsx
+import { ModalContainer, Reoverlay } from 'reoverlay'
+import { AuthModal, ConfirmModal } from './modals'
 
 Reoverlay.config([
-  {
-    name: 'AuthModal',
-    component: AuthModal
-  },
-  {
-    name: 'DeleteModal',
-    component: DeleteModal
-  },
-  {
-    name: 'PostModal',
-    component: PostModal
-  }
+  { name: 'AuthModal', component: AuthModal },
+  { name: 'ConfirmModal', component: ConfirmModal },
 ])
-```
-<strong>NOTE:</strong> If you're code-splitting your app and you don't want to import all modals in the entry part, you don't need to use this. Please refer to [usage](#usage-) for more info.
 
-##### `showModal(modal, props)`
-
-| Name    | Type                  | Default | Descripiton                                                                                                 |
-|---------|-----------------------|---------|-------------------------------------------------------------------------------------------------------------|
-| modal | `string` \| `React.FC`| `null`  | Either your modal's name (in case you've already passed that to `Reoverlay.config()`) or your modal component.|
-| props   | `object`              | `{}`    | Optional                                                 |
-
-```javascript
-import { Reoverlay } from 'reoverlay';
-import { MyModal } from '../modals';
-
-const MyPage = () => {
-  const showModal = () => {
-    Reoverlay.showModal(MyModal);
-    // or Reoverlay.showModal("MyModal")
-  }
-
+export function App() {
   return (
-    <div>
-      <button onClick={showModal}>Show modal</button>
-    </div>
+    <>
+      <Routes />
+      <ModalContainer />
+    </>
   )
 }
 ```
 
-##### `hideModal(modalName)`
+```tsx
+Reoverlay.showModal('ConfirmModal', {
+  message: 'Archive this item?',
+})
+```
 
-| Name        |  Type    |  Default  | Descripiton                                                                           |
-|-------------|----------|-----------|---------------------------------------------------------------------------------------|
-| modalName | `string` | `null`    | Optional. Specifies which modal gets hidden. By default, the last visible modal gets hidden. |
+## API
 
-```javascript
-import { Reoverlay, ModalWrapper } from 'reoverlay';
+### `Reoverlay.config(configData)`
 
-const MyModal = () => {
-  const closeModal = () => {
-    Reoverlay.hideModal();
-  }
+Registers named modals.
 
-  return (
-    <ModalWrapper>
-      <h1>My modal content...</h1>
-      <button onClick={closeModal}>Close modal</button>
-    </ModalWrapper>
-  )
-}
-
-const MyPage = () => {
-  const showModal = () => {
-    Reoverlay.showModal(MyModal);
-  }
-
-  return (
-    <div>
-      <button onClick={showModal}>Show modal</button>
-    </div>
-  )
+```ts
+type ModalConfigItem = {
+  name: string
+  component: React.ElementType | React.ReactElement
 }
 ```
 
-##### `hideAll()`
-This comes in handy when dealing with multiple modals on top of each other (aka "Stacked Modals"). With this, you can hide all modals at once.
+Names must be unique within a single config call.
 
-### `ModalWrapper` props
+### `Reoverlay.showModal(modal, props?)`
 
-| Name                      | Type                                                                                                        | Default                       | Descripiton                                              |
-|---------------------------|-------------------------------------------------------------------------------------------------------------|-------------------------------|----------------------------------------------------------|
-| wrapperClassName          | `string`                                                                                                      | `''`                            | Additional CSS class for modal wrapper element.           |
-| contentContainerClassName | `string`                                                                                                      | `''`                            | Additional CSS class for modal content container element. |
-| animation                 | `'fade'` \| `'zoom'` \| `'flip'` \| `'door'` \| `'rotate'` \| `'slideUp'` \| `'slideDown'` \| `'slideLeft'` \| `'slideRight'` | `'fade'`                        | A preset of various animations for your modal.           |
-| onClose                   | `function`                                                                                                    | `() => Reoverlay.hideModal()` | Gets called when the user clicks outside modal content.      |
+Shows a modal. `modal` can be a configured string name, a React component, or a
+React element. `props` are passed to the modal when it renders.
 
-## Support ❤️
+```tsx
+Reoverlay.showModal(MyModal, { title: 'Hello' })
+Reoverlay.showModal(<MyModal title="Hello" />)
+Reoverlay.showModal('MyModal', { title: 'Hello' })
+```
 
-PRs are welcome! You can also [buy me a coffee](https://buymeacoffee.com/hiradary) if you wish.
+### `Reoverlay.hideModal(modalName?)`
 
-## LICENSE
+Hides a modal. When no name is provided, the last visible modal is hidden. When a
+name is provided, that configured modal is hidden.
+
+```ts
+Reoverlay.hideModal()
+Reoverlay.hideModal('ConfirmModal')
+```
+
+### `Reoverlay.hideAll()`
+
+Closes every active modal.
+
+```ts
+Reoverlay.hideAll()
+```
+
+## `ModalWrapper`
+
+`ModalWrapper` is a small default shell. You can skip it and render your own
+modal UI if you only want Reoverlay's state orchestration.
+
+```tsx
+import type { ModalWrapperProps } from 'reoverlay'
+```
+
+| Prop                        | Type                                                                                                          | Default                       |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| `animation`                 | `'fade' \| 'zoom' \| 'flip' \| 'door' \| 'rotate' \| 'slideUp' \| 'slideDown' \| 'slideLeft' \| 'slideRight'` | `'fade'`                      |
+| `wrapperClassName`          | `string`                                                                                                      | `''`                          |
+| `contentContainerClassName` | `string`                                                                                                      | `''`                          |
+| `onClose`                   | `(event) => void`                                                                                             | `() => Reoverlay.hideModal()` |
+| `closeOnEscape`             | `boolean`                                                                                                     | `true`                        |
+| `aria-label`                | `string`                                                                                                      | `undefined`                   |
+| `aria-labelledby`           | `string`                                                                                                      | `undefined`                   |
+| `aria-describedby`          | `string`                                                                                                      | `undefined`                   |
+| `role`                      | `'dialog' \| 'alertdialog'`                                                                                   | `'dialog'`                    |
+
+The preferred CSS import is:
+
+```ts
+import 'reoverlay/ModalWrapper.css'
+```
+
+The legacy import path is still supported:
+
+```ts
+import 'reoverlay/lib/ModalWrapper.css'
+```
+
+## Development
+
+This repo uses pnpm workspaces.
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Useful scripts:
+
+```bash
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build:package
+pnpm build:demo
+pnpm build:all
+```
+
+The demo lives in `demo/` and builds with Vite for GitHub Pages under
+`/reoverlay/`.
+
+## Release Checklist
+
+1. Update the version in `package.json`.
+2. Run `pnpm install --frozen-lockfile`.
+3. Run `pnpm lint`, `pnpm typecheck`, `pnpm test`, and `pnpm build:all`.
+4. Inspect the package contents with `npm pack --dry-run`.
+5. Publish with `pnpm publish --otp <code>` if your npm account requires 2FA.
+6. Deploy the demo with `pnpm --filter reoverlay-demo deploy`.
+
+## License
+
 [MIT](LICENSE)

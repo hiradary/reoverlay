@@ -1,0 +1,432 @@
+@font-face {
+  font-family: 'ProductSans';
+  font-weight: 400;
+  src:
+    local('Product Sans'),
+    local('ProductSans-Regular'),
+    url('./fonts/ProductSansRegular.woff2') format('woff2');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ProductSans';
+  font-weight: 700;
+  src:
+    local('Product Sans Bold'),
+    local('ProductSans-Bold'),
+    url('./fonts/ProductSansBold.woff2') format('woff2');
+  font-style: normal;
+}
+
+:root {
+  --color-blue: #2578ff;
+  --color-blue-dark-primary: #263b5d;
+  --color-blue-dark-secondary: #435b81;
+  --color-gray: #b1b8c5;
+  --color-gray-light: rgba(177, 184, 197, 0.15);
+  --size-huge-title: 2em;
+  --size-title: 1.5625em;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'ProductSans', sans-serif;
+  font-weight: normal;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20vh 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 40em;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.header .header__logo {
+  width: 221px;
+  height: 144px;
+}
+
+.header .header__title {
+  color: var(--color-blue-dark-primary);
+  font-size: var(--size-huge-title);
+  font-weight: bold;
+  padding-top: 0.5em;
+}
+
+.header .header__description {
+  color: var(--color-gray);
+  padding-top: 1.5em;
+  text-align: center;
+  line-height: 1.5em;
+}
+
+.header .header__buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.625em 0 1.5em;
+}
+
+.header .header__githubButton {
+  background-color: var(--color-blue);
+  height: 3.75em;
+  padding: 0 3em;
+  border-radius: 1em;
+  color: white;
+  transition: box-shadow 0.35s;
+  user-select: none;
+  margin: 0 1em;
+  display: flex;
+  align-items: center;
+}
+
+.header .header__githubButtonText {
+  padding-right: 0.5em;
+  white-space: nowrap;
+}
+
+.header .header__githubButton:hover {
+  box-shadow: 0 8px 15px rgba(37, 120, 255, 0.2);
+}
+
+.header .header__donationButton {
+  border: 1px solid #d7dee9;
+  height: 3.75em;
+  padding: 0 2.5em;
+  border-radius: 1em;
+  margin: 0 1em;
+  display: flex;
+  align-items: center;
+  color: var(--color-blue-dark-primary);
+  user-select: none;
+  transition: box-shadow 0.35s;
+}
+
+.header .header__donationButtonText {
+  padding-right: 0.5em;
+  white-space: nowrap;
+}
+
+.Code {
+  width: 100%;
+}
+
+.Code pre {
+  overflow: auto;
+  border-radius: 1em;
+  background: #f6f8fb;
+  color: var(--color-blue-dark-primary);
+  line-height: 1.5;
+  padding: 1.5em;
+}
+
+.section {
+  margin-top: 3.75em;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.section .section__title {
+  color: var(--color-blue-dark-primary);
+  font-size: var(--size-title);
+  font-weight: bold;
+  margin-bottom: 0.2em;
+  text-align: left;
+}
+
+.section .section__description {
+  color: var(--color-gray);
+  line-height: 1.5em;
+}
+
+.section .section__description .section__link {
+  color: var(--color-blue-dark-secondary);
+}
+
+.section .section__animationTypesContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 1.5em;
+}
+
+.section .section__animationTypeContainer {
+  width: 28%;
+  margin-bottom: 2em;
+  background: transparent;
+  padding: 0;
+}
+
+.section .section__animationType {
+  background-color: var(--color-gray-light);
+  border-radius: 1em;
+  text-align: center;
+  padding: 1em 0;
+  color: var(--color-blue-dark-secondary);
+  user-select: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+}
+
+.modalContent {
+  padding: 2em 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modalContent .modalContent__title {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.modalContent .modalContent__buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.modalContent .modalContent__buttonContainer button {
+  border: 1px solid #d7dee9;
+  padding: 1em 2.5em;
+  border-radius: 1em;
+  margin: 0 1em;
+  display: flex;
+  align-items: center;
+  color: var(--color-blue-dark-primary);
+  user-select: none;
+  background-color: white;
+  transition: 0.3s background-color;
+}
+
+.modalContent .modalContent__buttonContainer button:hover {
+  background-color: var(--color-gray-light);
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 3.75em;
+}
+
+.footer .footer__profilePhoto {
+  width: 6.25em;
+  height: 6.25em;
+  border-radius: 100%;
+  margin-bottom: 1.25em;
+}
+
+.footer .footer__intentionText {
+  color: var(--color-gray);
+}
+
+.footer .footer__twitterIcon {
+  width: 1em;
+}
+
+.footer .footer__twitterContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.footer .footer__twitterHandle {
+  padding-left: 0.2em;
+  color: var(--color-blue-dark-primary);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25em;
+  }
+
+  .modalContent {
+    padding: 2em 3em;
+  }
+
+  .modalContent .modalContent__buttonContainer {
+    flex-direction: column;
+  }
+
+  .modalContent .modalContent__buttonContainer button:not(:last-child) {
+    margin-bottom: 1em;
+  }
+}
+
+@media (max-width: 500px) {
+  .header .header__buttonContainer {
+    flex-direction: column;
+  }
+
+  .header .header__githubButton {
+    margin: 0 0 1em;
+  }
+}
